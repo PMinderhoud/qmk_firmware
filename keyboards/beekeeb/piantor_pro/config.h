@@ -15,3 +15,11 @@
 
 #define SPLIT_HAND_PIN GP17
 #define SPLIT_HAND_PIN_LOW_IS_LEFT
+
+#define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE
+
+#define NO_AUTO_SHIFT_ALPHA
+
+// Tap-hold configuration for home row mods.
+#define TAPPING_TERM 220
+#define PERMISSIVE_HOLD
