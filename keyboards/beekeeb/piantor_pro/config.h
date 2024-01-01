@@ -21,5 +21,5 @@
 #define NO_AUTO_SHIFT_ALPHA
 
 // Tap-hold configuration for home row mods.
-#define TAPPING_TERM 220
+#define TAPPING_TERM 200
 #define PERMISSIVE_HOLD

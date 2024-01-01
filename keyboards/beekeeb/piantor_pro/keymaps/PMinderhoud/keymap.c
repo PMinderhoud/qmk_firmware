@@ -1,9 +1,12 @@
 // Copyright 2023 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
 
+#include "keycodes.h"
+#include "keymap_us.h"
 #include "quantum_keycodes.h"
 #include QMK_KEYBOARD_H
 #include "features/select_word.h"
+#include "features/achordion.h"
 
 // Enums
 enum layers {
@@ -18,7 +21,7 @@ enum layers {
 };
 
 enum custom_keycodes {
-    PM_QU = SAFE_RANGE,
+    PK_ISNOT = SAFE_RANGE,
     SELWORD,
 };
 
@@ -174,6 +177,7 @@ const uint32_t unicode_map[] PROGMEM = {
 #define SK_PRDSK G(C(KC_LEFT))     // Previous desktop
 #define SK_NXDSK G(C(KC_RIGHT))     // Next desktop
 
+#define RC(kc) RCTL(kc)
 
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -286,16 +290,19 @@ enum combos {
   EXCLAMATION,
   QUESTION,
   COLON,
+  ISNOT
 };
 
 const uint16_t PROGMEM ecirc_combo[] = {U_ETREM, U_EAIGU, COMBO_END};
 const uint16_t PROGMEM icirc_combo[] = {U_ITREM, U_IAIGU, COMBO_END};
 const uint16_t PROGMEM ocirc_combo[] = {U_OTREM, U_OAIGU, COMBO_END};
-const uint16_t PROGMEM ucirc_combo[] = {U_UTREM, U_UAIGU, COMBO_END};
+const uint16_t PROGMEM ucirc_combo[] = {U_UTREM, U_UAIGU,  COMBO_END};
 const uint16_t PROGMEM dblqte_combo[] = {KC_SCLN, KC_QUOT, COMBO_END};
 const uint16_t PROGMEM exclamation_combo[] = {KC_SCLN, KC_L, COMBO_END};
 const uint16_t PROGMEM question_combo[] = {KC_K, KC_G, COMBO_END};
 const uint16_t PROGMEM colon_combo[] = {KC_X, KC_K, COMBO_END};
+const uint16_t PROGMEM notnull_combo[] = {KC_EXLM, SHOME_EQ, COMBO_END};
+
 
 combo_t key_combos[] = {
   [ECIRC] = COMBO(ecirc_combo, U_ECIRC),
@@ -306,11 +313,49 @@ combo_t key_combos[] = {
   [EXCLAMATION] = COMBO(exclamation_combo, KC_EXCLAIM),
   [QUESTION] = COMBO(question_combo, KC_QUESTION),
   [COLON] = COMBO(colon_combo, KC_COLON),
+  [ISNOT] = COMBO(notnull_combo, PK_ISNOT)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
+  if (!process_achordion(keycode, record)) { return false; }
   if (!process_select_word(keycode, record, SELWORD)) { return false; }
   // Your macros ...
+  switch (keycode) {
+    case PK_ISNOT:
+        if (record->event.pressed) {
+            SEND_STRING(" is not ");
+        }
+  }
 
   return true;
+}
+
+void matrix_scan_user(void) {
+  achordion_task();
+}
+
+// Disable achordion for the thumb keys
+uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
+    switch (tap_hold_keycode) {
+        case L_SP_NAV:
+        case L_RA_DIA:
+        case L_BS_SYM:
+        case L_TB_FNC:
+            return 0;
+    }
+    return 800;
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+  // Allow some one hand combinations
+  switch (tap_hold_keycode) {
+    case HOME_I:  // I + L (GUI+L - lock computer).
+      if (other_keycode == KC_L) { return true; }
+      break;
+  }
+  // Otherwise, follow the opposite hands rule.
+  return achordion_opposite_hands(tap_hold_record, other_record);
 }
