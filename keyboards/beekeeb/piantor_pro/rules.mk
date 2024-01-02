@@ -8,4 +8,5 @@ CAPS_WORD_ENABLE = yes
 SRC += features/select_word.c
 SRC += features/achordion.c
 SRC += features/caps_word.c
+SRC += features/layer_lock.c
 

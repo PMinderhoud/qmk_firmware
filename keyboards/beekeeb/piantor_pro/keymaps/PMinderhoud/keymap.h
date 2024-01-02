@@ -7,9 +7,9 @@ enum layers {
     BASE_NOMOD,
     QWERTY,
     DIACRIT,
-    FUNC,
     SYM,
     NAV,
+    FUNC,
     ADJUST,
 };
 
@@ -20,6 +20,10 @@ enum custom_keycodes {
     PASCLCSE,    // ThisIsASample
     CAPSWORD,    // THIS is a sample
     CONSTCSE,    // THIS_IS_A_SAMPLE
+    LLOCK,
+    PK_ZEROX,
+    PK_DZERO,
+    PK_TZERO
 };
 
 enum unicode_names {

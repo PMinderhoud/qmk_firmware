@@ -9,6 +9,7 @@
 #include "features/select_word.h"
 #include "features/achordion.h"
 #include "features/caps_word.h"
+#include "features/layer_lock.h"
 
 // Mappings
 const uint32_t unicode_map[] PROGMEM = {
@@ -84,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       [DIACRIT] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, _______, _______, _______,  U_EURO, _______,                      _______, _______, U_EGRAV, U_AGRAV, _______, _______,
+        LLOCK, _______, _______, _______,  U_EURO, _______,                      _______, _______, U_EGRAV, U_AGRAV, _______, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, _______,  U_NTIL,  U_CCED, KC_LSFT, _______,                      U_UTREM, U_OTREM, U_ETREM, U_ATREM, U_ITREM, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -109,11 +110,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [SYM] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      _______, KC_PERC, KC_PLUS, KC_MINS,  KC_DLR, KC_LCBR,                      KC_RCBR,    KC_7,    KC_8,    KC_9,   KC_AT, KC_COLN,
+        LLOCK, KC_PERC, KC_PLUS, KC_MINS,  KC_DLR, KC_LCBR,                      KC_RCBR,    KC_7,    KC_8,    KC_9,   KC_AT, KC_COLN,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, KC_EXLM, KC_LABK, KC_RABK,SHOME_EQ, KC_LPRN,                      KC_RPRN,    KC_1,    KC_2,    KC_3,    KC_0, KC_QUES,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_TILD, KC_CIRC, KC_ASTR, KC_SLSH, KC_UNDS, KC_LBRC,                      KC_RBRC,    KC_4,    KC_5,    KC_6, _______, _______,
+      KC_TILD, KC_CIRC, KC_ASTR, KC_SLSH, KC_UNDS, KC_LBRC,                      KC_RBRC,    KC_4,    KC_5,    KC_6,  KC_DOT, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           KC_AMPR, _______, KC_PIPE,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -121,7 +122,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,---------------------------------------------------------------.
-      XXXXXXX, XXXXXXX, XXXXXXX, SELWORD, C(KC_N),C(KC_F4),                    G(KC_TAB),   KC_HOME,   KC_PGDN,   KC_PGUP,    KC_END,  SK_CLDSK,
+        LLOCK, XXXXXXX, XXXXXXX, SELWORD, C(KC_N),C(KC_F4),                    G(KC_TAB),   KC_HOME,   KC_PGDN,   KC_PGUP,    KC_END,  SK_CLDSK,
   //|--------+--------+--------+--------+--------+--------|                    |--------+----------+----------+----------+----------+----------|
       KC_PSCR, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, C(KC_A),                      KC_WSCH,   KC_LEFT,   KC_DOWN,     KC_UP,   KC_RGHT,  SK_NWDSK,
   //|--------+--------+--------+--------+--------+--------|                    |--------+----------+----------+----------+----------+----------|
@@ -166,7 +167,12 @@ enum combos {
   EXCLAMATION,
   QUESTION,
   COLON,
-  ISNOT
+  ISNOT,
+  DOT_SYM,
+  DBL_QTE_SYM,
+  ZEROX,
+  DBLZERO,
+  TRPLZERO
 };
 
 const uint16_t PROGMEM ecirc_combo[] = {U_ETREM, U_EAIGU, COMBO_END};
@@ -178,7 +184,11 @@ const uint16_t PROGMEM exclamation_combo[] = {KC_SCLN, KC_L, COMBO_END};
 const uint16_t PROGMEM question_combo[] = {KC_K, KC_G, COMBO_END};
 const uint16_t PROGMEM colon_combo[] = {KC_X, KC_K, COMBO_END};
 const uint16_t PROGMEM notnull_combo[] = {KC_EXLM, SHOME_EQ, COMBO_END};
-
+const uint16_t PROGMEM dotsym_combo[] = {KC_6, KC_DOT, COMBO_END};
+const uint16_t PROGMEM dblqtesym_combo[] = {KC_5, KC_6, COMBO_END};
+const uint16_t PROGMEM zerox_combo[] = {KC_1, KC_2, COMBO_END};
+const uint16_t PROGMEM doublezero_combo[] = {KC_3, KC_0, COMBO_END};
+const uint16_t PROGMEM triplezero_combo[] = {KC_2, KC_3, KC_0, COMBO_END};
 
 combo_t key_combos[] = {
   [ECIRC] = COMBO(ecirc_combo, U_ECIRC),
@@ -189,17 +199,38 @@ combo_t key_combos[] = {
   [EXCLAMATION] = COMBO(exclamation_combo, KC_EXCLAIM),
   [QUESTION] = COMBO(question_combo, KC_QUESTION),
   [COLON] = COMBO(colon_combo, KC_COLON),
-  [ISNOT] = COMBO(notnull_combo, PK_ISNOT)
+  [ISNOT] = COMBO(notnull_combo, PK_ISNOT),
+  [DOT_SYM] = COMBO(dotsym_combo, KC_COMMA),
+  [DBL_QTE_SYM] = COMBO(dblqtesym_combo, KC_DOUBLE_QUOTE),
+  [ZEROX] = COMBO(zerox_combo, PK_ZEROX),
+  [DBLZERO] = COMBO(doublezero_combo, PK_DZERO),
+  [TRPLZERO] = COMBO(triplezero_combo, PK_TZERO),
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
   if (!process_achordion(keycode, record)) { return false; }
   if (!process_select_word(keycode, record, SELWORD)) { return false; }
+  if (!process_layer_lock(keycode, record, LLOCK)) { return false; }
   // Your macros ...
   switch (keycode) {
     case PK_ISNOT:
         if (record->event.pressed) {
             SEND_STRING(" is not ");
+        }
+        break;
+    case PK_DZERO:
+        if (record->event.pressed) {
+            SEND_STRING("00");
+        }
+        break;
+    case PK_TZERO:
+        if (record->event.pressed) {
+            SEND_STRING("000");
+        }
+        break;
+    case PK_ZEROX:
+        if (record->event.pressed) {
+            SEND_STRING("0x");
         }
         break;
     case CAPSWORD:
