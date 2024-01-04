@@ -27,6 +27,7 @@ enum custom_keycodes {
 };
 
 enum unicode_names {
+  U_EURO_,
   U_SS_LOWER,
   U_SS_UPPER,
   U_NTIL_LOWER,
@@ -66,7 +67,6 @@ enum unicode_names {
   U_U_AIGU_U,
   U_U_CIRC_L,
   U_U_CIRC_U,
-  U_EURO,
 };
 
 // Home row mods for Base (Recurva) layer.
@@ -110,7 +110,7 @@ enum unicode_names {
 #define U_CCED UP(U_CCED_LOWER, U_CCED_UPPER)
 #define U_ATREM UP(U_A_TREMA_L, U_A_TREMA_U)
 #define U_AAIGU UP(U_A_AIGU_L, U_A_AIGU_U)
-#define U_AGRAV UP(U_A_GRAVE_L, U_A_GRAVE_L)
+#define U_AGRAV UP(U_A_GRAVE_L, U_A_GRAVE_U)
 #define U_ETREM UP(U_E_TREMA_L, U_E_TREMA_U)
 #define U_EAIGU UP(U_E_AIGU_L, U_E_AIGU_U)
 #define U_EGRAV UP(U_E_GRAVE_L, U_E_GRAVE_U)
@@ -124,6 +124,7 @@ enum unicode_names {
 #define U_UTREM UP(U_U_TREMA_L, U_U_TREMA_U)
 #define U_UAIGU UP(U_U_AIGU_L, U_U_AIGU_U)
 #define U_UCIRC UP(U_U_CIRC_L, U_U_CIRC_U)
+#define U_EURO  UM(U_EURO_)
 
 // LAYER KEYS
 #define L_SP_NAV LT(NAV,KC_SPC)

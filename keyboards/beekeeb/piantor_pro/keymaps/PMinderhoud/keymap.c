@@ -25,7 +25,7 @@ const uint32_t unicode_map[] PROGMEM = {
   [U_A_AIGU_L]   = 0x00e1,  // á
   [U_A_AIGU_U]   = 0x00c1,  // Á
   [U_A_GRAVE_L]  = 0x00e0,  // à
-  [U_A_GRAVE_L]  = 0x00c0,  // À
+  [U_A_GRAVE_U]  = 0x00c0,  // À
   [U_E_TREMA_L]  = 0x00eb,  // ë
   [U_E_TREMA_U]  = 0x00cb,  // Ë
   [U_E_AIGU_L]   = 0x00e9,  // é
@@ -52,7 +52,7 @@ const uint32_t unicode_map[] PROGMEM = {
   [U_U_AIGU_U]   = 0x00da,  // Ú
   [U_U_CIRC_L]   = 0x00fb,  // û
   [U_U_CIRC_U]   = 0x00db,  // Û
-  [U_EURO]       = 0x20ac,  // €
+  [U_EURO_]       = 0x20ac,  // €
 };
 
 
