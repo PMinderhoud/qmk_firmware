@@ -41,6 +41,8 @@ enum unicode_names {
   U_A_AIGU_U,
   U_A_GRAVE_L,
   U_A_GRAVE_U,
+  U_A_CIRC_L,
+  U_A_CIRC_U,
   U_E_TREMA_L,
   U_E_TREMA_U,
   U_E_AIGU_L,
@@ -55,18 +57,24 @@ enum unicode_names {
   U_I_AIGU_U,
   U_I_CIRC_L,
   U_I_CIRC_U,
+  U_I_GRAVE_L,
+  U_I_GRAVE_U,
   U_O_TREMA_L,
   U_O_TREMA_U,
   U_O_AIGU_L,
   U_O_AIGU_U,
   U_O_CIRC_L,
   U_O_CIRC_U,
+  U_O_GRAVE_L,
+  U_O_GRAVE_U,
   U_U_TREMA_L,
   U_U_TREMA_U,
   U_U_AIGU_L,
   U_U_AIGU_U,
   U_U_CIRC_L,
   U_U_CIRC_U,
+  U_U_GRAVE_L,
+  U_U_GRAVE_U,
 };
 
 // Home row mods for Base (Recurva) layer.
@@ -111,6 +119,7 @@ enum unicode_names {
 #define U_ATREM UP(U_A_TREMA_L, U_A_TREMA_U)
 #define U_AAIGU UP(U_A_AIGU_L, U_A_AIGU_U)
 #define U_AGRAV UP(U_A_GRAVE_L, U_A_GRAVE_U)
+#define U_ACIRC UP(U_A_CIRC_L, U_A_CIRC_U)
 #define U_ETREM UP(U_E_TREMA_L, U_E_TREMA_U)
 #define U_EAIGU UP(U_E_AIGU_L, U_E_AIGU_U)
 #define U_EGRAV UP(U_E_GRAVE_L, U_E_GRAVE_U)
@@ -118,12 +127,15 @@ enum unicode_names {
 #define U_ITREM UP(U_I_TREMA_L, U_I_TREMA_U)
 #define U_IAIGU UP(U_I_AIGU_L, U_I_AIGU_U)
 #define U_ICIRC UP(U_I_CIRC_L, U_I_CIRC_U)
+#define U_IGRAV UP(U_I_GRAVE_L, U_I_GRAVE_U)
 #define U_OTREM UP(U_O_TREMA_L, U_O_TREMA_U)
 #define U_OAIGU UP(U_O_AIGU_L, U_O_AIGU_U)
 #define U_OCIRC UP(U_O_CIRC_L, U_O_CIRC_U)
+#define U_OGRAV UP(U_O_GRAVE_L, U_O_GRAVE_U)
 #define U_UTREM UP(U_U_TREMA_L, U_U_TREMA_U)
 #define U_UAIGU UP(U_U_AIGU_L, U_U_AIGU_U)
 #define U_UCIRC UP(U_U_CIRC_L, U_U_CIRC_U)
+#define U_UGRAV UP(U_U_GRAVE_L, U_U_GRAVE_U)
 #define U_EURO  UM(U_EURO_)
 
 // LAYER KEYS

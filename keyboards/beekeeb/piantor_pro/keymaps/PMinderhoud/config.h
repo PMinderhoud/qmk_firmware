@@ -18,6 +18,7 @@
 
 #define UNICODE_SELECTED_MODES UNICODE_MODE_WINCOMPOSE
 
+#define NO_AUTO_SHIFT_ALPHA
 
 // Tap-hold configuration for home row mods.
 #define TAPPING_TERM 200

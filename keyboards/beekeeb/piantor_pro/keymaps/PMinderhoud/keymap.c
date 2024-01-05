@@ -24,6 +24,8 @@ const uint32_t unicode_map[] PROGMEM = {
   [U_A_TREMA_U]  = 0x00c4,  // Ä
   [U_A_AIGU_L]   = 0x00e1,  // á
   [U_A_AIGU_U]   = 0x00c1,  // Á
+  [U_A_CIRC_L]   = 0x00e2,  // â
+  [U_A_CIRC_U]   = 0x00c2,  // Â
   [U_A_GRAVE_L]  = 0x00e0,  // à
   [U_A_GRAVE_U]  = 0x00c0,  // À
   [U_E_TREMA_L]  = 0x00eb,  // ë
@@ -40,18 +42,24 @@ const uint32_t unicode_map[] PROGMEM = {
   [U_I_AIGU_U]   = 0x00cd,  // Í
   [U_I_CIRC_L]   = 0x00ee,  // î
   [U_I_CIRC_U]   = 0x00ce,  // Î
+  [U_I_GRAVE_L]  = 0x00ec,  // ì
+  [U_I_GRAVE_U]  = 0x00cc,  // Ì
   [U_O_TREMA_L]  = 0x00f6,  // ö
   [U_O_TREMA_U]  = 0x00d6,  // Ö
   [U_O_AIGU_L]   = 0x00f3,  // ó
   [U_O_AIGU_U]   = 0x00d3,  // Ó
   [U_O_CIRC_L]   = 0x00f4,  // ô
   [U_O_CIRC_U]   = 0x00d4,  // Ô
+  [U_O_GRAVE_L]  = 0x00f2,  // ò
+  [U_O_GRAVE_U]  = 0x00d2,  // Ò
   [U_U_TREMA_L]  = 0x00fc,  // ü
   [U_U_TREMA_U]  = 0x00dc,  // Ü
   [U_U_AIGU_L]   = 0x00fa,  // ú
   [U_U_AIGU_U]   = 0x00da,  // Ú
   [U_U_CIRC_L]   = 0x00fb,  // û
   [U_U_CIRC_U]   = 0x00db,  // Û
+  [U_U_GRAVE_L]  = 0x00f9,  // ù
+  [U_U_GRAVE_U]  = 0x00d9,  // Ù
   [U_EURO_]       = 0x20ac,  // €
 };
 
@@ -85,9 +93,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
       [DIACRIT] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        LLOCK, _______, _______, _______,  U_EURO, _______,                      _______, _______, U_EGRAV, U_AGRAV, _______, _______,
+        LLOCK, _______, _______, _______,  U_EURO, _______,                      U_UGRAV, U_OGRAV, U_EGRAV, U_AGRAV, U_IGRAV, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______, _______,  U_NTIL,  U_CCED, KC_LSFT, _______,                      U_UTREM, U_OTREM, U_ETREM, U_ATREM, U_ITREM, _______,
+      _______,    U_SS,  U_NTIL,  U_CCED, KC_LSFT, _______,                      U_UTREM, U_OTREM, U_ETREM, U_ATREM, U_ITREM, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       _______, _______, _______, _______, _______, _______,                      U_UAIGU, U_OAIGU, U_EAIGU, U_AAIGU, U_IAIGU, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
@@ -134,11 +142,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [FUNC] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-      DM_REC1,CONSTCSE,CAMELCSE,PASCLCSE,CAPSWORD, DM_PLY1,                      XXXXXXX,   KC_F9,  KC_F10,  KC_F11,  KC_F12, MO(ADJUST),
+        LLOCK,CONSTCSE,CAMELCSE,PASCLCSE,CAPSWORD, DM_PLY1,                      DM_REC1,   KC_F9,  KC_F10,  KC_F11,  KC_F12, MO(ADJUST),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      DM_REC2, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DM_PLY2,                      XXXXXXX,   KC_F5,   KC_F6,   KC_F7,   KC_F8, XXXXXXX,
+      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DM_PLY2,                      DM_REC2,   KC_F5,   KC_F6,   KC_F7,   KC_F8, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      DM_RSTP, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DM_RSTP,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -159,6 +167,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 // clang-format on
 
 enum combos {
+  ACIRC,
   ECIRC,
   ICIRC,
   OCIRC,
@@ -175,6 +184,7 @@ enum combos {
   TRPLZERO
 };
 
+const uint16_t PROGMEM acirc_combo[] = {U_ATREM, U_AAIGU, COMBO_END};
 const uint16_t PROGMEM ecirc_combo[] = {U_ETREM, U_EAIGU, COMBO_END};
 const uint16_t PROGMEM icirc_combo[] = {U_ITREM, U_IAIGU, COMBO_END};
 const uint16_t PROGMEM ocirc_combo[] = {U_OTREM, U_OAIGU, COMBO_END};
@@ -191,6 +201,7 @@ const uint16_t PROGMEM doublezero_combo[] = {KC_3, KC_0, COMBO_END};
 const uint16_t PROGMEM triplezero_combo[] = {KC_2, KC_3, KC_0, COMBO_END};
 
 combo_t key_combos[] = {
+  [ACIRC] = COMBO(acirc_combo, U_ACIRC),
   [ECIRC] = COMBO(ecirc_combo, U_ECIRC),
   [ICIRC] = COMBO(icirc_combo, U_ICIRC),
   [OCIRC] = COMBO(ocirc_combo, U_OCIRC),
