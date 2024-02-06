@@ -6,6 +6,7 @@ enum layers {
     BASE,
     BASE_NOMOD,
     QWERTY,
+    QWERTY_NOMOD,
     DIACRIT,
     SYM,
     NAV,
@@ -90,10 +91,10 @@ enum unicode_names {
 // Home row mods for QWERTY layer.
 #define QHOME_A LGUI_T(KC_A)
 #define QHOME_S LALT_T(KC_S)
-#define QHOME_D LSFT_T(KC_D)
-#define QHOME_F LCTL_T(KC_F)
-#define QHOME_J RCTL_T(KC_J)
-#define QHOME_K RSFT_T(KC_K)
+#define QHOME_D LCTL_T(KC_D)
+#define QHOME_F LSFT_T(KC_F)
+#define QHOME_J RSFT_T(KC_J)
+#define QHOME_K RCTL_T(KC_K)
 #define QHOME_L LALT_T(KC_L)
 #define QHOME_SC RGUI_T(KC_SCLN)
 
