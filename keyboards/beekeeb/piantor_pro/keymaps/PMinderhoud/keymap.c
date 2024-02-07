@@ -74,7 +74,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
     KC_ESCAPE,    KC_Z,    KC_X,    KC_K,    KC_G,    KC_W,                         KC_J,    KC_L, KC_SCLN, KC_QUOT,KC_COMMA, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_LSFT,L_SP_NAV,L_RA_DIA,     KC_ENT,L_BS_SYM,L_TB_FNC
+                                          KC_BSPC,L_SP_NAV,L_RA_DIA,   L_EN_SYM,  QK_REP,L_TB_FNC
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -295,6 +295,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
         case L_SP_NAV:
         case L_RA_DIA:
         case L_BS_SYM:
+        case L_EN_SYM:
         case L_TB_FNC:
             return 0;
     }

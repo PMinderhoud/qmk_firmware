@@ -142,6 +142,7 @@ enum unicode_names {
 // LAYER KEYS
 #define L_SP_NAV LT(NAV,KC_SPC)
 #define L_BS_SYM LT(SYM,KC_BACKSPACE)
+#define L_EN_SYM LT(SYM,KC_ENT)
 #define L_RA_DIA LT(DIACRIT,KC_RALT)
 #define L_TB_FNC LT(FUNC,KC_TAB)
 
