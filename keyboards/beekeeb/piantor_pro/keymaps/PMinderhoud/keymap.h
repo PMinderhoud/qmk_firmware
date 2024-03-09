@@ -5,6 +5,8 @@
 enum layers {
     BASE,
     BASE_NOMOD,
+    SEMIMAK,
+    SEMIMAK_NOMOD,
     QWERTY,
     QWERTY_NOMOD,
     DIACRIT,
@@ -24,7 +26,9 @@ enum custom_keycodes {
     LLOCK,
     PK_ZEROX,
     PK_DZERO,
-    PK_TZERO
+    PK_TZERO,
+    PK_SMHAP,
+    PK_SMSAD
 };
 
 enum unicode_names {
@@ -87,6 +91,12 @@ enum unicode_names {
 #define HOME_E RCTL_T(KC_E)
 #define HOME_A LALT_T(KC_A)
 #define HOME_I RGUI_T(KC_I)
+
+// Semimak JQ
+#define SHOME_R LALT_T(KC_R)
+#define SHOME_N LCTL_T(KC_N)
+#define SHOME_T LSFT_T(KC_T)
+#define SHOME_D RSFT_T(KC_D)
 
 // Home row mods for QWERTY layer.
 #define QHOME_A LGUI_T(KC_A)
