@@ -155,6 +155,8 @@ enum unicode_names {
 #define L_EN_SYM LT(SYM,KC_ENT)
 #define L_RA_DIA LT(DIACRIT,KC_RALT)
 #define L_TB_FNC LT(FUNC,KC_TAB)
+#define L_DL_FNC LT(FUNC,KC_DEL)
+#define L_TB_DIA LT(DIACRIT,KC_TAB)
 
 #define SK_NWDSK G(C(KC_D))     // New desktop
 #define SK_CLDSK G(C(KC_F4))     // Close desktop

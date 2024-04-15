@@ -68,13 +68,13 @@ const uint32_t unicode_map[] PROGMEM = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_F,    KC_R,    KC_D,    KC_P,    KC_V,                         KC_Q,    KC_M,    KC_U,    KC_O,    KC_Y,  KC_DEL,
+      XXXXXXX,    KC_F,    KC_R,    KC_D,    KC_P,    KC_V,                         KC_Q,    KC_M,    KC_U,    KC_O,    KC_Y, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      KC_GRAVE,  HOME_S,  HOME_N,  HOME_T,  HOME_C,    KC_B,                       KC_DOT,  HOME_H,  HOME_E,  HOME_A,  HOME_I,KC_SLASH,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_ESCAPE,    KC_Z,    KC_X,    KC_K,    KC_G,    KC_W,                         KC_J,    KC_L, KC_SCLN, KC_QUOT,KC_COMMA, KC_BSLS,
+      XXXXXXX,    KC_Z,    KC_X,    KC_K,    KC_G,    KC_W,                         KC_J,    KC_L, KC_SCLN, KC_QUOT,KC_COMMA, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_BSPC,L_SP_NAV,L_RA_DIA,   L_EN_SYM,  QK_REP,L_TB_FNC
+                                        KC_ESCAPE,L_SP_NAV,L_TB_DIA,   L_EN_SYM,L_BS_SYM,L_DL_FNC
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -92,13 +92,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   ),
     [SEMIMAK] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-       KC_TAB,    KC_F,    KC_L,    KC_H,    KC_V,    KC_X,                      KC_QUOT,    KC_W,    KC_U,    KC_O,    KC_Y,  KC_DEL,
+      XXXXXXX,    KC_F,    KC_L,    KC_H,    KC_V,    KC_X,                      KC_QUOT,    KC_W,    KC_U,    KC_O,    KC_Y, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
      KC_GRAVE,  HOME_S, SHOME_R, SHOME_N, SHOME_T,    KC_K,                         KC_C, SHOME_D,  HOME_E,  HOME_A,  HOME_I, KC_SCLN,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-    KC_ESCAPE,    KC_Z,    KC_J,    KC_B,    KC_M,    KC_Q,                         KC_P,    KC_G,KC_COMMA,  KC_DOT,KC_SLASH, KC_BSLS,
+      XXXXXXX,    KC_Z,    KC_J,    KC_B,    KC_M,    KC_Q,                         KC_P,    KC_G,KC_COMMA,  KC_DOT,KC_SLASH, KC_BSLS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
-                                          KC_BSPC,L_SP_NAV,L_RA_DIA,   L_EN_SYM,  QK_REP,L_TB_FNC
+                                        KC_ESCAPE,L_SP_NAV,L_TB_DIA,   L_EN_SYM,L_BS_SYM,L_DL_FNC
                                       //`--------------------------'  `--------------------------'
 
   ),
@@ -166,23 +166,23 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [NAV] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,---------------------------------------------------------------.
-        LLOCK, XXXXXXX, XXXXXXX, SELWORD, C(KC_N),C(KC_F4),                    G(KC_TAB),   KC_HOME,   KC_PGDN,   KC_PGUP,    KC_END,  SK_CLDSK,
+        LLOCK, C(KC_F), C(KC_H), SELWORD, C(KC_N),C(KC_F4),                    G(KC_TAB),   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  SK_CLDSK,
   //|--------+--------+--------+--------+--------+--------|                    |--------+----------+----------+----------+----------+----------|
       KC_PSCR, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, C(KC_A),                      KC_WSCH,   KC_LEFT,   KC_DOWN,     KC_UP,   KC_RGHT,  SK_NWDSK,
   //|--------+--------+--------+--------+--------+--------|                    |--------+----------+----------+----------+----------+----------|
-      C(KC_Y), C(KC_Z), C(KC_X), C(KC_C), C(KC_V), G(KC_V),                     SK_PRDSK,C(KC_PGUP), C(KC_END),C(KC_HOME),C(KC_PGDN),  SK_NXDSK,
+      C(KC_Y), C(KC_Z), C(KC_X), C(KC_C), C(KC_V), G(KC_V),                     SK_PRDSK,   KC_HOME,   KC_PGDN,   KC_PGUP,    KC_END,  SK_NXDSK,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+----------+----------+----------+----------+----------|
-                                          _______, _______, _______,    KC_WBAK, KC_WFWD, A(KC_TAB)
+                                          _______, _______, _______,    KC_WBAK, KC_WFWD,  KC_TAB
                                       //`--------------------------'  `--------------------------'
   ),
 
     [FUNC] = LAYOUT_split_3x6_3(
   //,-----------------------------------------------------.                    ,-----------------------------------------------------.
-        LLOCK,CONSTCSE,CAMELCSE,PASCLCSE,CAPSWORD, DM_PLY1,                      DM_REC1,   KC_F9,  KC_F10,  KC_F11,  KC_F12, MO(ADJUST),
+        LLOCK,CONSTCSE,CAMELCSE,PASCLCSE,CAPSWORD, KC_CAPS,                      DM_RSTP,   KC_F9,  KC_F10,  KC_F11,  KC_F12, MO(ADJUST),
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DM_PLY2,                      DM_REC2,   KC_F5,   KC_F6,   KC_F7,   KC_F8, XXXXXXX,
+      XXXXXXX, KC_LGUI, KC_LALT, KC_LCTL, KC_LSFT, DM_PLY1,                      DM_REC1,   KC_F5,   KC_F6,   KC_F7,   KC_F8, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      DM_RSTP,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, DM_PLY2,                      DM_REC2,   KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______, _______, _______
                                       //`--------------------------'  `--------------------------'
@@ -217,7 +217,9 @@ enum combos {
   DBL_QTE_SYM,
   ZEROX,
   DBLZERO,
-  TRPLZERO
+  TRPLZERO,
+  SLASH,
+  BACKSLASH
 };
 
 const uint16_t PROGMEM acirc_combo[] = {U_ATREM, U_AAIGU, COMBO_END};
@@ -235,6 +237,8 @@ const uint16_t PROGMEM dblqtesym_combo[] = {KC_5, KC_6, COMBO_END};
 const uint16_t PROGMEM zerox_combo[] = {KC_1, KC_2, COMBO_END};
 const uint16_t PROGMEM doublezero_combo[] = {KC_3, KC_0, COMBO_END};
 const uint16_t PROGMEM triplezero_combo[] = {KC_2, KC_3, KC_0, COMBO_END};
+const uint16_t PROGMEM slash_combo[] = {KC_Z, KC_X, COMBO_END};
+const uint16_t PROGMEM backslash_combo[] = {KC_QUOT,KC_COMMA, COMBO_END};
 
 combo_t key_combos[] = {
   [ACIRC] = COMBO(acirc_combo, U_ACIRC),
@@ -252,6 +256,8 @@ combo_t key_combos[] = {
   [ZEROX] = COMBO(zerox_combo, PK_ZEROX),
   [DBLZERO] = COMBO(doublezero_combo, PK_DZERO),
   [TRPLZERO] = COMBO(triplezero_combo, PK_TZERO),
+  [SLASH] = COMBO(slash_combo, KC_SLASH),
+  [BACKSLASH] = COMBO(backslash_combo, KC_BACKSLASH)
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
