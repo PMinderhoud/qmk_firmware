@@ -337,6 +337,7 @@ uint16_t achordion_timeout(uint16_t tap_hold_keycode) {
         case L_BS_SYM:
         case L_EN_SYM:
         case L_TB_FNC:
+        case L_DL_FNC:
             return 0;
     }
     return 800;
